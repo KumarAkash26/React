@@ -1,60 +1,71 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { Minus, Plus, Trash2 } from "lucide-react";
+import { MyStore } from "../context/MyContext";
 
 const CartCard = ({ product }) => {
+
+  const {
+    incQuantity,
+    decQuantity,
+    remItem
+  } = useContext(MyStore);
+
   return (
-    <div className='border rounded p-4'>
+    <div className="mt-3 flex gap-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-xl bg-gray-100 p-4">
+        <img
+          src={product.image}
+          alt={product.title}
+          className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
 
-         <div className="flex h-24 w-24  items-center justify-center rounded-xl bg-gray-100 p-3">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="h-full w-full object-contain"
-                  />
-                </div>
-        <div className="flex min-w-0 flex-1 flex-col">
-                  <h3 className="line-clamp-2 text-sm font-semibold text-gray-900">
-                    {product.title}
-                  </h3>
+      <div className="flex flex-1 flex-col justify-between">
+        <div>
+          <h3 className="line-clamp-2 text-base font-semibold text-gray-900">
+            {product.title}
+          </h3>
 
-                  <p className="mt-1 text-base font-bold text-gray-900">
-                    ${product.price}
-                  </p>
+          <p className="mt-2 text-2xl font-bold text-indigo-600">
+            ${product.price}
+          </p>
+        </div>
 
-                  <div className="mt-auto flex items-center justify-between gap-3">
-                    {/* Quantity buttons */}
-                    <div className="flex items-center overflow-hidden rounded-lg border border-gray-300">
-                      <button
-                        type="button"
-                        
-                        aria-label={`Decrease quantity of ${product.title}`}
-                        className="h-8 w-8 text-lg text-gray-700 transition hover:bg-gray-100"
-                      >
-                        −
-                      </button>
+        <div className="mt-5 flex items-center justify-between">
+          <div className="flex items-center gap-3 rounded-full border border-gray-200 bg-gray-50 px-2 py-1">
+            <button onClick={() => decQuantity(product.id)} className="flex h-8 w-8 items-center justify-center rounded-full bg-white shadow transition hover:bg-indigo-500 hover:text-white">
+              <Minus size={16} />
+            </button>
 
-                      <span className="flex h-8 min-w-9 products-center justify-center items-center border-x border-gray-300 px-2 text-sm font-semibold">
-                        {/* {product.quantity} */}1
-                      </span>
+            <span className="w-6 text-center font-semibold">{ product.quantity }</span>
 
-                      <button
-                        type="button"
-                        aria-label={`Increase quantity of ${product.title}`}
-                        className="h-8 w-8 text-lg text-gray-700 transition hover:bg-gray-100"
-                      >
-                        +
-                      </button>
-                    </div>
+            <button onClick={() => incQuantity(product.id)} className="flex h-8 w-8 items-center justify-center rounded-full bg-white shadow transition hover:bg-indigo-500 hover:text-white">
+              <Plus size={16} />
+            </button>
+          </div>
 
-                    <button
-                      type="button"
-                      className="text-sm font-medium text-red-500 transition hover:text-red-700"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                  </div>
+          <div className="flex flex-col items-center">
+            <button onClick={() => remItem(product.id)} className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-red-500 transition hover:bg-red-50 hover:text-red-600">
+              <Trash2 size={18} />
+              Remove
+            </button>
 
+            <div className="mt-2 flex flex-col items-center justify-between">
+              <span className="text-sm text-green-600 font-medium">
+                ✓ In Stock
+              </span>
+              
+              <span className="text-sm font-semibold text-gray-500">
+                Total: ${(product.price * product.quantity).toFixed(2)}
+              </span>
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  )}
+  );
+};
 
-export default CartCard
+export default CartCard;

@@ -2,13 +2,27 @@ import React from 'react';
 import { useContext } from 'react';
 import { MyStore } from '../context/MyContext';
 
-const ProductCard = ({ product, isInCart }) => {
-    const addToCard = () => {
-        setcartItems((prev) => [...prev, {...product }])
+const ProductCard = ({ product }) => {
+
+    const { cartItems, setcartItems } = useContext(MyStore);
+    const isInCart = cartItems.some(
+      (item) => item.id === product.id
+    );
+
+    const addToCard = ( product) => {
+        setcartItems((prev) => {
+            const exist = prev.find((item) => item.id === product.id)
+
+            if(exist){
+              return prev.map((item) => item.id === product.id ? { ...item, quantity: item.quantity + 1} : item )
+            }
+
+            return [ ...prev, { ...product, quantity: 1}]
+          })
         alert("Item is added into Cart")
     }
-
-    let { setcartItems } = useContext(MyStore);
+    
+    
 
     return (
     <article className="group w-full max-w-sm overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -66,7 +80,7 @@ const ProductCard = ({ product, isInCart }) => {
          </button>)
          :(
              <button 
-          onClick={ addToCard }
+          onClick={() => addToCard(product) }
             type="button"
             className="rounded-xl bg-gray-900  px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-gray-700 active:scale-95"
           >

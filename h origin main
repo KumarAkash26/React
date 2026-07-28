@@ -1,0 +1,28 @@
+[33mcommit 77b1dd076a900552e8050b0cac207494efdea45a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Akash Kumbhakar <kumarakashg620@gmail.com>
+Date:   Mon Jul 27 14:33:55 2026 +0530
+
+    Added Todo List UI
+
+ Todo List/src/App.jsx                       |  46 [31m-------------[m
+ Todo List/src/assets/hero.png               | Bin [31m13057[m -> [32m0[m bytes
+ Todo List/src/assets/react.svg              |   1 [31m-[m
+ Todo List/src/assets/vite.svg               |   1 [31m-[m
+ Todo List/src/components/Tabs.jsx           |  30 [31m---------[m
+ Todo List/src/components/TodoCard.jsx       |  75 [31m----------------------[m
+ Todo List/src/components/TodoForm.jsx       |  96 [31m----------------------------[m
+ Todo List/src/components/TodoList.jsx       |  13 [31m----[m
+ Todo List/src/index.css                     |   1 [31m-[m
+ Todo List/src/main.jsx                      |  12 [31m----[m
+ Todo List/src/redux/features/taskSlice.js   |  65 [31m-------------------[m
+ Todo List/src/redux/store.js                |   8 [31m---[m
+ {Todo List => Todo_List}/.gitignore         |   0
+ {Todo List => Todo_List}/README.md          |   0
+ {Todo List => Todo_List}/eslint.config.js   |   0
+ {Todo List => Todo_List}/index.html         |   0
+ {Todo List => Todo_List}/package-lock.json  |   0
+ {Todo List => Todo_List}/package.json       |   0
+ {Todo List => Todo_List}/public/favicon.svg |   0
+ {Todo List => Todo_List}/public/icons.svg   |   0
+ {Todo List => Todo_List}/vite.config.js     |   0
+ 21 files changed, 348 deletions(-)

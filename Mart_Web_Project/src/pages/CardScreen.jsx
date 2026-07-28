@@ -9,7 +9,7 @@ const CardScreen = () => {
 
     let { cartItems } = useContext(MyStore);
   return (
-    <div className='h-screen grid grid-cols-4 min-w-screen gap-4 pl-50 pr-50'>
+    <div>
        {cartItems.map((elem) => {
         return <CartCard key={elem.id} product={elem}/>
        })
