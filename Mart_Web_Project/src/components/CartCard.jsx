@@ -11,7 +11,7 @@ const CartCard = ({ product }) => {
   } = useContext(MyStore);
 
   return (
-    <div className="mt-3 flex gap-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <div className="mt-3 w-sm flex gap-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <div className="flex h-28 w-28 shrink-0 items-center justify-center rounded-xl bg-gray-100 p-4">
         <img
           src={product.image}

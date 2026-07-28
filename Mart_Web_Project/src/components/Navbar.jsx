@@ -7,7 +7,7 @@ const Navbar = () => {
   /* let { setIsCardOpen } = useContext(MyStore); */
 
   return (
-    <div className= "rounded p-5 items-center justify-between font-semibold text-black uppercase flex">
+    <div className= "rounded-xl border-b-2 border-gray-300 shadow-md p-5 items-center justify-between font-semibold text-black uppercase flex">
       <div>Logo</div>
       <div className="flex gap-10 text-sm">
         <NavLink to={"/"}>Home</NavLink>
