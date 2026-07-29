@@ -7,6 +7,9 @@ import ProductCards from "./components/ProductCards";
 import CardScreen from "./pages/CardScreen";
 import { MyStore } from "./context/MyContext";
 import { Routes, Route } from "react-router";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
 
 const App = () => {
  
@@ -21,6 +24,9 @@ const App = () => {
         <Route path="/about" element={ <About/> } />
         <Route path="/cart" element={ <CardScreen/> } />
         <Route path="/shop" element={ <Shop/>} />
+        <Route path="/login" element={ <Login/>} />
+        <Route path="/register" element={<Register/>} />
+      
       </Routes>
 
       

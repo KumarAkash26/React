@@ -1,8 +1,12 @@
 import React from 'react';
 import { useContext } from 'react';
 import { MyStore } from '../context/MyContext';
+import { useNavigate } from 'react-router';
+import CardScreen from '../pages/CardScreen';
 
 const ProductCard = ({ product }) => {
+
+    let navigate = useNavigate();
 
     const { cartItems, setcartItems } = useContext(MyStore);
     const isInCart = cartItems.some(
@@ -76,7 +80,9 @@ const ProductCard = ({ product }) => {
          </button>)
          :(
              <button 
-          onClick={() => addToCard(product) }
+          onClick={() => {
+            addToCard(product)
+            navigate("/Cart") }}
             type="button"
             className="rounded-xl bg-gray-900  px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-gray-700 active:scale-95"
           >

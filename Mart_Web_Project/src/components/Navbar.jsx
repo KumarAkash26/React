@@ -1,13 +1,14 @@
 import React from "react";
 /* import { useContext } from "react"; */
 import { MyStore } from "../context/MyContext";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
+import Login from "../pages/Login";
 
 const Navbar = () => {
   /* let { setIsCardOpen } = useContext(MyStore); */
 
   return (
-    <div className= "rounded-xl border-b-2 border-gray-300 shadow-md p-5 items-center justify-between font-semibold text-black uppercase flex">
+    <div className="rounded-xl border-b-2 border-gray-300 shadow-md p-5 items-center justify-between font-semibold text-black uppercase flex">
       <div>Logo</div>
       <div className="flex gap-10 text-sm">
         <NavLink to={"/"}>Home</NavLink>
@@ -15,7 +16,9 @@ const Navbar = () => {
         <NavLink to={"/cart"}>Cart</NavLink>
         <NavLink to={"/about"}>About</NavLink>
       </div>
-      <button>Login</button>
+      <button>
+        <Link to={"/login"}>Login</Link>
+      </button>
     </div>
   );
 };
