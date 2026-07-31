@@ -1,50 +1,71 @@
 import { useState } from "react";
 import { createContext } from "react";
- 
-export  const MyStore = createContext();
 
+export const MyStore = createContext();
 
-export const ContextProvider = ({children}) => {
+export const ContextProvider = ({ children }) => {
+  const [isCardOpen, setIsCardOpen] = useState(false);
+  const [cartItems, setcartItems] = useState([]);
 
-    const [isCardOpen, setIsCardOpen] = useState(false);
-    const [cartItems, setcartItems] = useState([]);
+  const [registeredUsers, setregisteredUsers] = useState(
+    JSON.parse(localStorage.getItem("registeredUsers")) || [],
+  );
+  const [loggedUser, setloggedUser] = useState(
+    JSON.parse(localStorage.getItem("loggedUser"))
+  );
 
-    const incQuantity = (id) => {
-        setcartItems((prev) =>
-             prev.map((item) => 
-                item.id === id ? {
-            ...item,
-            quantity: item.quantity + 1
-        } : item ));
-    };
+  console.log("register ->", registeredUsers);
+  console.log("login ->", loggedUser);
 
-    const decQuantity = (id) => {
-        setcartItems((prev) =>
-             prev.map((item) => 
-                item.id === id && item.quantity > 1 ? {
-            ...item,
-            quantity: item.quantity - 1
-        } : item ));
-    }
+  const incQuantity = (id) => {
+    setcartItems((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
+          : item,
+      ),
+    );
+  };
 
-    const remItem = (id) => {
-        setcartItems((prev) => prev.filter((item) => item.id !== id))
-    }
+  const decQuantity = (id) => {
+    setcartItems((prev) =>
+      prev.map((item) =>
+        item.id === id && item.quantity > 1
+          ? {
+              ...item,
+              quantity: item.quantity - 1,
+            }
+          : item,
+      ),
+    );
+  };
 
-    const tPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+  const remItem = (id) => {
+    setcartItems((prev) => prev.filter((item) => item.id !== id));
+  };
 
-    const stateValue = {
-        isCardOpen,
-        setIsCardOpen,
-        cartItems, 
-        setcartItems,
-        incQuantity,
-        decQuantity,
-        remItem,
-        tPrice
-        
-    };
+  const tPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0,
+  );
 
-    return <MyStore.Provider value={ stateValue}>{children}</MyStore.Provider>
-}
+  const stateValue = {
+    isCardOpen,
+    setIsCardOpen,
+    cartItems,
+    setcartItems,
+    incQuantity,
+    decQuantity,
+    remItem,
+    tPrice,
+    registeredUsers,
+    setregisteredUsers,
+    loggedUser,
+    setloggedUser,
+  };
 
+  return <MyStore.Provider value={stateValue}>{children}</MyStore.Provider>;
+};
