@@ -13,6 +13,7 @@ export const ContextProvider = ({ children }) => {
   const [loggedUser, setloggedUser] = useState(
     JSON.parse(localStorage.getItem("loggedUser"))
   );
+  
 
   console.log("register ->", registeredUsers);
   console.log("login ->", loggedUser);
@@ -65,6 +66,7 @@ export const ContextProvider = ({ children }) => {
     setregisteredUsers,
     loggedUser,
     setloggedUser,
+    
   };
 
   return <MyStore.Provider value={stateValue}>{children}</MyStore.Provider>;
